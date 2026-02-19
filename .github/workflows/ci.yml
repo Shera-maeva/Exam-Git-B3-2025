@@ -1,0 +1,19 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run app
+        run: python app.py
+
+      - name: Show secret (masked)
+        run: echo "Token is ${{ secrets.DEPLOY_TOKEN }}"
